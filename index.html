@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Frontend Wizards Stage 1a Todo</title>
+	<link rel="stylesheet" href="/public/style.css" />
+</head>
+<body data-testid="page-body">
+	<main class="page-shell" data-testid="page-main">
+		<div class="top-bar" data-testid="top-bar">
+			<h1 class="page-title" data-testid="page-title">Frontend Wizards Stage 1a Components</h1>
+			<button type="button" class="theme-toggle" id="theme-toggle" data-testid="theme-toggle-button" aria-label="Toggle dark mode">
+				Dark mode
+			</button>
+		</div>
+
+		<div class="todo-card-wrapper" data-testid="todo-card-wrapper">
+			<article class="todo-card" data-testid="test-todo-card" aria-labelledby="todo-title" data-priority="High" data-status="Pending">
+				<div class="live-region" id="todo-live-region" aria-live="polite" aria-atomic="true"></div>
+				<div class="todo-priority-rail" data-testid="test-todo-priority-indicator" aria-hidden="true"></div>
+
+				<div class="view-mode" id="todo-view-mode">
+					<div class="card-header" data-testid="todo-header">
+						
+						<div class="card-main">
+							
+							<div class="title-row">
+								<div class="checkbox-wrap">
+									<input id="todo-checkbox" class="todo-checkbox" type="checkbox" data-testid="test-todo-checkbox" aria-label="Mark todo as done" />
+								</div>
+								<h2 id="todo-title" class="todo-title" data-testid="test-todo-title">Ship Stage 1 Build</h2>
+								<span class="priority-dot" aria-hidden="true"></span>
+							</div>
+
+							<div class="meta-row" data-testid="todo-meta">
+								<p class="todo-priority" data-testid="test-todo-priority">High</p>
+								<span class="dot" aria-hidden="true">•</span>
+								<p class="todo-status" data-testid="test-todo-status">Pending</p>
+								<span class="dot" aria-hidden="true">•</span>
+								<p class="todo-due" data-testid="test-todo-due-date">
+									Due: <time id="todo-due-time" data-testid="todo-due-time-value"></time>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="time-section" data-testid="todo-time-row">
+						<p class="todo-time" data-testid="test-todo-time-remaining" aria-live="polite"></p>
+						<p class="todo-overdue" data-testid="test-todo-overdue-indicator" role="status" aria-live="polite" hidden>Overdue</p>
+					</div>
+
+					<div class="description-section">
+						<div
+							id="todo-collapsible-section"
+							class="todo-collapsible is-collapsed"
+							data-testid="test-todo-collapsible-section"
+						>
+							<p class="todo-description" data-testid="test-todo-description">
+								Build both Stage 1 components with precise test IDs, keyboard accessibility, responsive layout, and reliable state synchronization.
+								Include granular time updates and clear visual feedback for status and priority changes.
+							</p>
+						</div>
+						<div class="expand-row">
+							<button
+								id="todo-expand-toggle"
+								type="button"
+								class="ghost-btn todo-expand-toggle"
+								data-testid="test-todo-expand-toggle"
+								aria-expanded="false"
+								aria-controls="todo-collapsible-section"
+							>
+								<i class="toggle-arrow" aria-hidden="true">▾</i>
+								<span class="toggle-label">Show more</span>
+							</button>
+						</div>
+					</div>
+
+					<div class="status-row" data-testid="todo-controls">
+						<label class="status-wrap" for="todo-status-control" data-testid="todo-status-label">
+							<span data-testid="todo-status-label-text">Status</span>
+							<select id="todo-status-control" data-testid="test-todo-status-control" aria-label="Todo status control">
+								<option value="Pending">Pending</option>
+								<option value="In Progress">In Progress</option>
+								<option value="Done">Done</option>
+							</select>
+						</label>
+					</div>
+
+					<div class="card-actions" data-testid="card-actions-view">
+						<button id="todo-edit-button" type="button" class="btn ghost-btn" data-testid="test-todo-edit-button" aria-label="Edit this todo">Edit</button>
+						<button id="todo-delete-button" type="button" class="btn danger-btn" data-testid="test-todo-delete-button" aria-label="Delete this todo">Delete</button>
+					</div>
+				</div>
+
+				<form class="todo-edit-form" data-testid="test-todo-edit-form" id="todo-edit-form" hidden novalidate>
+				<div class="form-field" data-testid="todo-edit-title-field">
+					<label for="todo-edit-title-input" data-testid="todo-edit-title-label">Title</label>
+					<input id="todo-edit-title-input" data-testid="test-todo-edit-title-input" type="text" required />
+				</div>
+
+				<div class="form-field" data-testid="todo-edit-description-field">
+					<label for="todo-edit-description-input" data-testid="todo-edit-description-label">Description</label>
+					<textarea id="todo-edit-description-input" data-testid="test-todo-edit-description-input" rows="4" required></textarea>
+				</div>
+
+				<div class="form-grid" data-testid="todo-edit-grid">
+					<div class="form-field" data-testid="todo-edit-priority-field">
+						<label for="todo-edit-priority-select" data-testid="todo-edit-priority-label">Priority</label>
+						<select id="todo-edit-priority-select" data-testid="test-todo-edit-priority-select">
+							<option value="Low">Low</option>
+							<option value="Medium">Medium</option>
+							<option value="High">High</option>
+						</select>
+					</div>
+
+					<div class="form-field" data-testid="todo-edit-due-date-field">
+						<label for="todo-edit-due-date-input" data-testid="todo-edit-due-date-label">Due Date</label>
+						<input id="todo-edit-due-date-input" data-testid="test-todo-edit-due-date-input" type="datetime-local" required />
+					</div>
+				</div>
+
+				<div class="form-actions" data-testid="todo-edit-actions">
+					<button class="btn" id="todo-save-button" data-testid="test-todo-save-button" type="submit">Save</button>
+					<button class="btn" id="todo-cancel-button" data-testid="test-todo-cancel-button" type="button">Cancel</button>
+				</div>
+				<p class="save-indicator" id="todo-save-indicator" role="status" aria-live="polite" hidden>Saved successfully</p>
+				</form>
+
+				<div class="delete-modal" id="todo-delete-modal" hidden aria-hidden="true">
+					<div class="delete-modal__backdrop" data-close-modal="true"></div>
+					<div class="delete-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title" aria-describedby="delete-modal-desc">
+						<h3 id="delete-modal-title">Delete this task?</h3>
+						<p id="delete-modal-desc">This action cannot be undone. Are you sure you want to remove this todo card?</p>
+						<div class="delete-modal__actions">
+							<button type="button" class="btn" id="todo-delete-cancel">Cancel</button>
+							<button type="button" class="btn danger-btn" id="todo-delete-confirm">Delete</button>
+						</div>
+					</div>
+				</div>
+			</article>
+			<section class="todo-empty-state" id="todo-empty-state" data-testid="todo-empty-state" role="status" aria-live="polite" hidden>
+				<h2 class="todo-empty-title">All caught up</h2>
+				<p class="todo-empty-text">Oops, your todo list is empty. Add a new task to keep your momentum going.</p>
+			</section>
+		</div>
+
+	</main>
+	<footer class="site-footer" data-testid="site-footer">
+		<p class="site-footer__text">&copy; <span id="footer-year"></span> Frontend Wizards Stage 1A. Crafted with care.</p>
+	</footer>
+	<script src="/public/script.js"></script>
+</body>
+</html>
