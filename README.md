@@ -1,35 +1,29 @@
-# Frontend Wizards Stage 1
+# Frontend Wizards Stage 1A - Advanced Todo Card
 
-This project contains both required Stage 1 tasks:
-
-- Stage 1A: Advanced Todo Card (Interactive and Stateful)
+This project implements Stage 1A: a single interactive and stateful Todo Card built with plain HTML, CSS, and JavaScript.
 
 ## Live URL
 
-Add your hosted URL here after deployment:
-
-- Live: `<https://hng-advanced-todo-stage1a.vercel.app/>`
+- Live: https://hng-advanced-todo-stage1a.vercel.app/
 
 ## Repository URL
 
-Add your GitHub repository URL:
-
-- Repo: `<https://github.com/vitus-john/HNG-advanced-todo-stage1a>`
+- Repo: https://github.com/vitus-john/HNG-advanced-todo-stage1a
 
 ## Run locally
 
-Because this is plain HTML/CSS/JS, open `index.html` directly in a browser, or use a local server.
+1. Open the project folder in VS Code.
+2. Open `index.html` directly in a browser, or run it with Live Server.
 
-Example with VS Code Live Server:
+## What changed from Stage 0
 
-1. Open the folder in VS Code.
-2. Start Live Server on `index.html`.
+Stage 0 was extended with richer interactivity and synchronized UI state.
 
-## Stage 1A (Advanced Todo Card) - What changed from Stage 0
-
-Implemented the required interactive and stateful upgrades:
-
-- Edit mode with full form and required test IDs:
+1. Editing mode
+- Edit mode opens a form and supports save/cancel.
+- Save updates title, description, priority, and due date.
+- Cancel restores the pre-edit snapshot.
+- Implemented required test ids:
   - `test-todo-edit-form`
   - `test-todo-edit-title-input`
   - `test-todo-edit-description-input`
@@ -37,64 +31,61 @@ Implemented the required interactive and stateful upgrades:
   - `test-todo-edit-due-date-input`
   - `test-todo-save-button`
   - `test-todo-cancel-button`
-- Status control (`test-todo-status-control`) with allowed values:
-  - Pending
-  - In Progress
-  - Done
-- Status synchronization rules implemented:
-  - Checking checkbox sets status to Done
-  - Setting status to Done checks checkbox
-  - Unchecking after Done returns status to Pending
-- Priority indicator added (`test-todo-priority-indicator`) with visual changes for Low/Medium/High
-- Expand/collapse behavior for long descriptions:
-  - `test-todo-expand-toggle`
-  - `test-todo-collapsible-section`
-  - Uses `aria-expanded` + `aria-controls`
-- Enhanced time management:
-  - `test-todo-time-remaining`
-  - `test-todo-overdue-indicator`
-  - Granular messages (days/hours/minutes)
-  - Overdue messaging and visual red accent
-  - If status is Done, time switches to `Completed` and timer stops
-- Visual state styling added:
-  - Done: strike-through + muted card style
-  - In Progress: distinct style
-  - High priority: stronger visual emphasis
-  - Overdue: red accent
+
+2. Status transitions and sync rules
+- Added `test-todo-status-control` with: Pending, In Progress, Done.
+- Status display remains present as `test-todo-status`.
+- Checkbox and status stay synchronized:
+  - Checking checkbox -> Done
+  - Setting status to Done -> checkbox checked
+  - Unchecking after Done -> Pending
+
+3. Priority indicator enhancement
+- Kept `test-todo-priority`.
+- Added `test-todo-priority-indicator` using a visual rail/accent.
+- Low, Medium, and High priorities each have distinct visual styling.
+
+4. Expand/collapse behavior
+- Added `test-todo-expand-toggle` and `test-todo-collapsible-section`.
+- Long descriptions are collapsed by default.
+- Toggle reveals/hides full content and updates `aria-expanded`.
+
+5. Time management enhancements
+- Kept `test-todo-time-remaining`.
+- Added `test-todo-overdue-indicator`.
+- Time labels are granular (days, hours, minutes).
+- Overdue state shows explicit indicator and visual accent.
+- Timer updates every 30 seconds.
+- When status is Done, timer stops and label becomes "Completed".
+
+6. Visual state changes
+- Done: strike-through title + muted card appearance.
+- In Progress: distinct status styling.
+- High priority: stronger visual emphasis.
+- Overdue: red accent and warning pill.
+
+## Design decisions
+
+- Kept a single in-memory state object for predictable state sync.
+- Used one render pipeline (`renderTodo`) to keep UI updates consistent.
+- Added light/dark theme toggle for usability without changing test ids.
+- Preserved all existing Stage 0 test ids while introducing Stage 1A ids.
 
 ## Accessibility notes
 
-- All edit form fields have explicit labels and matching `for` attributes.
-- Status control has an accessible name via label and `aria-label`.
-- Expand/collapse control uses `aria-expanded` and `aria-controls` linked to collapsible region id.
-- Time updates use polite live regions where appropriate.
-- Focus styles are visible for keyboard users.
-- Form focus trapping is implemented while the edit form is open.
-- Focus returns to the Edit trigger when edit mode closes.
-
-## Responsive behavior
-
-Designed for:
-
-- Mobile (320px): vertical stacking, form fields stack cleanly
-- Tablet (768px): improved spacing and two-column form details
-- Desktop (1024px+): richer layout with avatar/content split and aligned controls
-
-The layout avoids overflow with long titles and long description text via wrapping and collapsible content.
+- Form controls have explicit labels.
+- Expand/collapse is a semantic button with `aria-expanded` and `aria-controls`.
+- Status and time updates are announced via polite live regions.
+- Visible `:focus-visible` styles are provided for keyboard users.
+- Edit form includes keyboard focus trapping.
+- Focus returns to the trigger element when edit mode closes.
 
 ## Known limitations
 
-- Delete action currently hides the todo card in UI only (no undo, no persistence).
-- Data is in-memory and resets on page refresh.
+- Data is not persisted; refresh resets the card.
+- Delete action is UI-only for this single-card stage.
+- No automated test suite is included in this repo.
 
-## Submission checklist
+## Submission link
 
-Before submission, update this README with:
-
-- Hosted live URL
-- Final repository URL
-- Any extra notes for evaluators
-
-Submission form:
-
-- [Submission Form](https://docs.google.com/forms/d/e/1FAIpQLSfyENWbGf9qRkmDj77BIEAPkO0WwIqDpeR6_dte026HA-KuWQ/viewform)
+- https://docs.google.com/forms/d/e/1FAIpQLSfyENWbGf9qRkmDj77BIEAPkO0WwIqDpeR6_dte026HA-KuWQ/viewform
