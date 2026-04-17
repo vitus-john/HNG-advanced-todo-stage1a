@@ -8,13 +8,13 @@ This project contains both required Stage 1 tasks:
 
 Add your hosted URL here after deployment:
 
-- Live: `<your-live-url>`
+- Live: `<https://hng-advanced-todo-stage1a.vercel.app/>`
 
 ## Repository URL
 
 Add your GitHub repository URL:
 
-- Repo: `<your-repo-url>`
+- Repo: `<https://github.com/vitus-john/HNG-advanced-todo-stage1a>`
 
 ## Run locally
 
